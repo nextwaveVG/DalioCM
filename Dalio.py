@@ -102,6 +102,9 @@ if run:
     else:
         with st.spinner(f"Loading data and computing metrics for {selected_days} days..."):
             price_data = load_price_data(tickers, selected_days)
+            st.write("Tickers Submitted:", tickers)
+            st.write("Price Data Preview:")
+            st.write(price_data)
 
             if price_data is None or price_data.shape[1] < 2:
                 st.error("Not enough valid data to compute results.")
@@ -114,7 +117,10 @@ if run:
                     stats = get_correlation_stats(corr)
                     st.markdown("### Correlation Matrix")
                     metric_cols = st.columns(3)
-                    metric_cols[0].metric("Average Correlation", f"{stats['avg']:.2f}")
+                    avg_corr = stats["avg"]
+                    if isinstance(avg_corr, pd.Series):
+                        avg_corr = avg_corr.mean()
+                    metric_cols[0].metric("Average Correlation", f"{avg_corr:.2f}")
                     metric_cols[1].metric(f"Max Correlation ({stats['max_pair'][0]} / {stats['max_pair'][1]})", f"{stats['max_val']:.2f}")
                     metric_cols[2].metric(f"Min Correlation ({stats['min_pair'][0]} / {stats['min_pair'][1]})", f"{stats['min_val']:.2f}")
 

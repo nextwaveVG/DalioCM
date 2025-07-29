@@ -2,6 +2,14 @@
 import pandas as pd
 import yfinance as yf
 
+def normalize_ticker(ticker: str) -> str:
+    replacements = {
+        "BTCUSD": "BTC-USD",
+        "ETHUSD": "ETH-USD",
+        "XRPUSD": "XRP-USD",
+    }
+    return replacements.get(ticker.upper(), ticker)
+
 def fetch_price_data(ticker: str, days: int) -> pd.DataFrame:
     try:
         df = yf.download(ticker, period=f"{days}d", interval="1d")
@@ -16,7 +24,7 @@ def fetch_price_data(ticker: str, days: int) -> pd.DataFrame:
 def load_price_data(ticker_list: list, days: int) -> pd.DataFrame:
     all_data = []
     for ticker in ticker_list:
-        df = fetch_price_data(ticker, days)
+        df = fetch_price_data(normalize_ticker(ticker), days)
         if df is not None:
             all_data.append(df)
     if all_data:
