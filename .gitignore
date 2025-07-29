@@ -1,1 +1,2 @@
 -e "__ppycache__/\n*.pyc\n.DS_Store\n.env\n*pkl\n*.db" 
+".env" 
