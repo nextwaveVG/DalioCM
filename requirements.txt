@@ -86,7 +86,7 @@ opentelemetry-sdk==1.34.0
 opentelemetry-semantic-conventions==0.55b0
 opentelemetry-util-http==0.55b0
 outcome==1.3.0.post0
-packaging==25.0
+packaging>=20.0,<25.0
 pandas==2.2.3
 pathspec==0.12.1
 pdfkit==1.0.0
