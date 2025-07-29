@@ -122,7 +122,7 @@ if run:
                         avg_corr = avg_corr.mean()
                     metric_cols[0].metric("Average Correlation", f"{avg_corr:.2f}")
                     metric_cols[1].metric(f"Max Correlation ({stats['max_pair']})", f"{stats['max']:.2f}")
-                    metric_cols[2].metric(f"Min Correlation ({stats{'min_pair']})", f"{stats['min']:.2f}")
+                    metric_cols[2].metric(f"Min Correlation ({stats['min_pair']})", f"{stats['min']:.2f}")
 
                     fig = render_heatmap(corr)
                     st.pyplot(fig)
