@@ -120,9 +120,15 @@ if run:
                     avg_corr = stats["avg"]
                     if isinstance(avg_corr, pd.Series):
                         avg_corr = avg_corr.mean()
-                    metric_cols[0].metric("Average Correlation", f"{avg_corr:.2f}")
-                    metric_cols[1].metric(f"Max Correlation ({stats['max_pair'][0]} / {stats['max_pair'][1]})", f"{stats['max_val']:.2f}")
-                    metric_cols[2].metric(f"Min Correlation ({stats['min_pair'][0]} / {stats['min_pair'][1]})", f"{stats['min_val']:.2f}")
+                    metric_cols[0].metric("Average Correlation", f"{float(stats['avg']):.2f}")
+                    metric_cols[1].metric(
+                        f"Max Correlation ({stats['max_pair'][0]} / {stats['max_pair'][1]})",
+                        f"{float(stats['max_val']):.2f}"
+                    )
+                    metric_cols[2].metric(
+                        f"Min Correlation ({stats['min_pair'][0]} / {stats['min_pair'][1]})",
+                        f"{float(stats['min_val']):.2f}"
+                    )
 
                     fig = render_heatmap(corr)
                     st.pyplot(fig)
